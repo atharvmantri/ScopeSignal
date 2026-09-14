@@ -2,6 +2,8 @@
 
 ScopeSignal turns a messy software brief into a decision-ready scope: likely deliverables, acceptance checks, missing context, and risk signals.
 
+Live demo: https://scopesignal.vercel.app/
+
 It is a local-first, dependency-free web app. Nothing is uploaded and the analysis runs in the browser.
 
 ## Why it exists
@@ -42,4 +44,4 @@ AI assistance was used for brainstorming, implementation support, debugging, and
 
 ## License
 
-MIT. See `LICENSE` if a downstream distribution needs an explicit license file.
+MIT. See `LICENSE` for the full text.
