@@ -12,6 +12,9 @@ const resultActions = document.querySelector('#result-actions');
 const copyButton = document.querySelector('#copy-button');
 const clearButton = document.querySelector('#clear-button');
 const copyStatus = document.querySelector('#copy-status');
+const conversionLink = document.querySelector('#conversion-link');
+const conversionLabel = document.querySelector('#conversion-label');
+const defaultConversionHref = conversionLink.getAttribute('href');
 let latestAnalysis = null;
 
 function updateCount() {
@@ -82,6 +85,36 @@ function reportMarkdown(analysis) {
   return `# ScopeSignal note\n\n${analysis.summary} (${analysis.score}% clear)\n\n${section('Likely deliverables', analysis.deliverables, 'No concrete deliverable detected.')}\n\n${section('Acceptance checks', analysis.acceptance, 'No explicit acceptance check detected.')}\n\n${section('Decisions still missing', analysis.missing, 'None detected by the current checks.')}\n\n${section('Risk signals', analysis.riskSignals, 'None detected by the current checks.')}\n\n## Best next question\nWhat is the smallest outcome we can accept as done, in which environment, by when, and for which payout?\n`;
 }
 
+function resetConversionLink() {
+  conversionLink.setAttribute('href', defaultConversionHref);
+  conversionLabel.textContent = 'Request a paid slice';
+  conversionLink.setAttribute('aria-label', 'Request a paid implementation slice');
+}
+
+function updateConversionLink(analysis) {
+  const body = [
+    'Hi Atharv,',
+    '',
+    'I used ScopeSignal and would like to discuss a bounded paid implementation slice.',
+    '',
+    'Original brief:',
+    input.value.trim(),
+    '',
+    'ScopeSignal note:',
+    reportMarkdown(analysis),
+    'Repo or page:',
+    'Deadline:',
+    'Payout terms:',
+    '',
+  ].join('\n');
+  const subject = encodeURIComponent('ScopeSignal brief - paid implementation slice');
+  const encodedBody = encodeURIComponent(body);
+
+  conversionLink.setAttribute('href', `mailto:work@atharv.me?subject=${subject}&body=${encodedBody}`);
+  conversionLabel.textContent = 'Request this paid slice';
+  conversionLink.setAttribute('aria-label', 'Request this analyzed paid implementation slice');
+}
+
 function renderPlaceholder() {
   latestAnalysis = null;
   emptyState.hidden = false;
@@ -93,10 +126,14 @@ function renderPlaceholder() {
   statusDot.classList.remove('ready');
 }
 
-input.addEventListener('input', updateCount);
+input.addEventListener('input', () => {
+  updateCount();
+  resetConversionLink();
+});
 sampleButton.addEventListener('click', () => {
   input.value = sampleBrief;
   updateCount();
+  resetConversionLink();
   input.focus();
 });
 analyzeButton.addEventListener('click', () => {
@@ -112,6 +149,7 @@ analyzeButton.addEventListener('click', () => {
   copyStatus.textContent = '';
   outputTitle.textContent = 'Your scope, clarified.';
   renderAnalysis(analysis);
+  updateConversionLink(analysis);
   statusDot.classList.add('ready');
 });
 
