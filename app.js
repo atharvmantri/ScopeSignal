@@ -8,6 +8,11 @@ const emptyState = document.querySelector('#empty-state');
 const results = document.querySelector('#results');
 const outputTitle = document.querySelector('#output-title');
 const statusDot = document.querySelector('#status-dot');
+const resultActions = document.querySelector('#result-actions');
+const copyButton = document.querySelector('#copy-button');
+const clearButton = document.querySelector('#clear-button');
+const copyStatus = document.querySelector('#copy-status');
+let latestAnalysis = null;
 
 function updateCount() {
   const count = input.value.length;
@@ -69,9 +74,17 @@ function renderAnalysis(analysis) {
     <article class="result-card"><div class="result-meta"><h3>Best next question</h3><span class="tag">next step</span></div><p>What is the smallest outcome we can accept as done, in which environment, by when, and for which payout?</p></article>`;
 }
 
+function reportMarkdown(analysis) {
+  const section = (title, items, fallback) => `## ${title}\n${(items.length ? items : [fallback]).map((item) => `- ${item}`).join('\n')}`;
+  return `# ScopeSignal note\n\n${analysis.summary} (${analysis.score}% clear)\n\n${section('Likely deliverables', analysis.deliverables, 'No concrete deliverable detected.')}\n\n${section('Acceptance checks', analysis.acceptance, 'No explicit acceptance check detected.')}\n\n${section('Decisions still missing', analysis.missing, 'None detected by the current checks.')}\n\n${section('Risk signals', analysis.riskSignals, 'None detected by the current checks.')}\n\n## Best next question\nWhat is the smallest outcome we can accept as done, in which environment, by when, and for which payout?\n`;
+}
+
 function renderPlaceholder() {
+  latestAnalysis = null;
   emptyState.hidden = false;
   results.hidden = true;
+  resultActions.hidden = true;
+  copyStatus.textContent = '';
   results.innerHTML = '';
   outputTitle.textContent = 'Your scope, clarified.';
   statusDot.classList.remove('ready');
@@ -89,11 +102,31 @@ analyzeButton.addEventListener('click', () => {
     return;
   }
   const analysis = analyzeBrief(input.value);
+  latestAnalysis = analysis;
   emptyState.hidden = true;
   results.hidden = false;
+  resultActions.hidden = false;
+  copyStatus.textContent = '';
   outputTitle.textContent = 'Your scope, clarified.';
   renderAnalysis(analysis);
   statusDot.classList.add('ready');
+});
+
+copyButton.addEventListener('click', async () => {
+  if (!latestAnalysis) return;
+  try {
+    await navigator.clipboard.writeText(reportMarkdown(latestAnalysis));
+    copyStatus.textContent = 'Copied.';
+  } catch {
+    copyStatus.textContent = 'Copy unavailable here; select the report manually.';
+  }
+});
+
+clearButton.addEventListener('click', () => {
+  input.value = '';
+  updateCount();
+  renderPlaceholder();
+  input.focus();
 });
 
 updateCount();
