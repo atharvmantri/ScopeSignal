@@ -4,6 +4,10 @@ ScopeSignal turns a messy software brief into a decision-ready scope: likely del
 
 Live demo: https://scopesignal.vercel.app/
 
+Demo video: https://github.com/atharvmantri/ScopeSignal/releases/download/demo-2026-09-15/ScopeSignal-demo.mp4
+
+Shareable pre-quote card: https://gist.github.com/atharvmantri/5df3843622528e985c9f01db5603de02
+
 It is a local-first, dependency-free web app. Nothing is uploaded and the analysis runs in the browser.
 
 ## Why it exists
