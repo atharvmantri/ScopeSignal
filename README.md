@@ -25,6 +25,7 @@ Then open `http://localhost:4173`.
 - Flag missing deadline, owner, environment, access, content, and budget details.
 - Highlight vague language, urgency, multi-surface scope, and integration risk.
 - Copy a concise scope note for the next conversation.
+- Request a bounded paid implementation slice after the brief is clear.
 - Keep all text in the browser; there is no network request or backend.
 
 ## Built with
