@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="ScopeSignal turns a messy software brief into a decision-ready scope." />
+    <title>ScopeSignal - make the next commit obvious</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="ScopeSignal home"><span class="brand-mark">S</span><span>ScopeSignal</span></a>
+      <p class="topbar-note">Local-first brief clarity</p>
+    </header>
+
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">BEFORE THE FIRST COMMIT</p>
+        <h1 id="page-title">Make the next commit obvious.</h1>
+        <p class="lede">Paste a software brief. ScopeSignal separates what is promised, what proves done, and what still needs a decision.</p>
+        <div class="trust-row" aria-label="Product properties"><span>Runs in your browser</span><span>No upload</span><span>No API key</span></div>
+      </section>
+
+      <section class="workspace" aria-label="ScopeSignal workspace">
+        <div class="input-panel panel">
+          <div class="panel-heading"><div><p class="eyebrow">1 / PASTE THE BRIEF</p><h2>What needs to happen?</h2></div><button class="text-button" id="sample-button" type="button">Use an example</button></div>
+          <label class="sr-only" for="brief-input">Software project brief</label>
+          <textarea id="brief-input" rows="15" placeholder="Example: Build a mobile booking page for our salon..."></textarea>
+          <div class="input-footer"><span id="char-count">0 characters</span><button class="button primary" id="analyze-button" type="button">Analyze brief <span aria-hidden="true">↗</span></button></div>
+        </div>
+
+        <div class="output-panel panel" aria-live="polite">
+          <div class="panel-heading"><div><p class="eyebrow">2 / SEE THE SHAPE</p><h2 id="output-title">Your scope, clarified.</h2></div><span class="status-dot" id="status-dot" aria-label="Waiting for a brief"></span></div>
+          <div id="empty-state" class="empty-state"><div class="empty-icon" aria-hidden="true">◎</div><p>Start with a real brief, even if it is rough. The useful gaps are usually hiding in the rough version.</p></div>
+          <div id="results" class="results" hidden></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer shell"><span>ScopeSignal / a small tool for clearer software work</span><span>Everything stays on this device.</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
