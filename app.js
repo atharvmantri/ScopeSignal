@@ -34,9 +34,12 @@ function sentencesFrom(text) {
 function analyzeBrief(text) {
   const sentences = sentencesFrom(text);
   const lines = text.split(/\r?\n/).map((line) => line.replace(/^[-*•\d.)\s]+/, '').trim()).filter(Boolean);
+  const deliverableStart = /^(build|create|add|fix|ship|design|write|audit|set up|setup|integrate|connect|launch|make|deliver|implement|update)\b/i;
+  const deliverableNoun = /\b(page|component|screen|section|feature|fix|audit|report|integration|flow|checklist)\b/i;
   const deliverables = unique([
-    ...lines.filter((line) => /^(build|create|add|fix|ship|design|write|audit|review|set up|setup|integrate|connect|launch|make|deliver|implement|update)\b/i.test(line)),
-    ...sentences.filter((sentence) => /\b(build|create|add|fix|ship|design|audit|review|integrate|connect|launch|implement)\b/i.test(sentence)).slice(0, 4),
+    ...sentences.filter((sentence) => deliverableStart.test(sentence)),
+    ...sentences.filter((sentence) => deliverableNoun.test(sentence) && !/\b(owner|review|reviewer)\b/i.test(sentence)),
+    ...lines.filter((line) => deliverableStart.test(line)).map((line) => line.split(/(?<=[.!?])\s+/)[0]),
   ]).slice(0, 5);
   const acceptance = unique(sentences.filter((sentence) => /\b(must|should|works? on|live by|choose|send|review|verify|expected|pass|support)\b/i.test(sentence))).slice(0, 5);
   const checks = [
