@@ -92,8 +92,8 @@ function reportMarkdown(analysis) {
 
 function resetConversionLink() {
   conversionLink.setAttribute('href', defaultConversionHref);
-  conversionLabel.textContent = 'Request a paid slice';
-  conversionLink.setAttribute('aria-label', 'Request a paid implementation slice');
+  conversionLabel.textContent = 'Request Conversion rescue';
+  conversionLink.setAttribute('aria-label', 'Request a one-business-day Conversion rescue');
 }
 
 function updateConversionLink(analysis) {
