@@ -37,7 +37,8 @@ Then open `http://localhost:4173`.
 - Extract likely deliverables and acceptance checks.
 - Flag missing deadline, owner, environment, access, content, and budget details.
 - Highlight vague language, urgency, multi-surface scope, and integration risk.
-- Copy a concise scope note for the next conversation.
+- Recommend a bounded first paid slice from the first deliverable and acceptance signal.
+- Copy or download a concise Markdown scope note for the next conversation.
 - Request a bounded paid implementation slice after the brief is clear.
 - Keep all text in the browser; there is no network request or backend.
 
