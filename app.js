@@ -112,10 +112,8 @@ function updateConversionLink(analysis) {
     'Payout terms:',
     '',
   ].join('\n');
-  const subject = encodeURIComponent('ScopeSignal brief - paid implementation slice');
-  const encodedBody = encodeURIComponent(body);
-
-  conversionLink.setAttribute('href', `mailto:work@atharv.me?subject=${subject}&body=${encodedBody}`);
+  const handoffMessage = body.slice(0, 3900);
+  conversionLink.setAttribute('href', `https://www.atharv.me/paid-work.html?scope=${encodeURIComponent(handoffMessage)}#brief`);
   conversionLabel.textContent = 'Request this paid slice';
   conversionLink.setAttribute('aria-label', 'Request this analyzed paid implementation slice');
 }
