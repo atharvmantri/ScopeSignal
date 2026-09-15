@@ -4,5 +4,6 @@ This is a product demo asset, not an official hackathon submission. ScopeSignal 
 
 Live app: https://scopesignal.vercel.app/
 Worked example: https://scopesignal.vercel.app/?demo=1
-Paid first-slice entry point: https://www.atharv.me/paid-work.html
+Focused Conversion rescue entry point: https://www.atharv.me/conversion-rescue.html
+Direct paid-work brief: https://www.atharv.me/paid-work.html
 Source: https://github.com/atharvmantri/ScopeSignal
