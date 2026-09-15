@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scopesignal.vercel.app/sitemap.xml
