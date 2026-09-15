@@ -32,6 +32,7 @@ h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.06em; line-height: 1
 .workspace { display: grid; gap: 18px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); padding: 22px 0 80px; }
 .conversion { align-items: center; display: flex; gap: 28px; justify-content: space-between; margin: -35px 0 80px; }
 .conversion h2 { margin-bottom: 10px; max-width: 620px; }
+.conversion-price { color: var(--navy); font-weight: 850; margin-bottom: 8px; }
 .conversion p:last-child { color: var(--muted); font-size: .92rem; margin: 0; max-width: 700px; }
 .conversion .button { flex: 0 0 auto; text-decoration: none; }
 .panel { background: var(--card); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); padding: 25px; }
