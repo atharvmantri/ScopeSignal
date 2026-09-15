@@ -14,6 +14,8 @@ It is a local-first, dependency-free web app. Nothing is uploaded and the analys
 
 ## Need the first slice built?
 
+Fastest path: a one-business-day Conversion rescue for one public CTA, form, or confirmation leak at INR 1,500–3,000 indicative. Start at https://www.atharv.me/paid-work.html. The existing diagnosis and micro-sprint routes below remain available.
+
 After the brief is clear, I can take a bounded React/TypeScript/Next.js implementation or QA slice: up to 45 minutes of diagnosis at INR 750–1,500 indicative, or a 2–4 hour micro-sprint at INR 2,500–5,000 indicative. A parent/guardian handles agreement and payout where required. Work begins only after written scope, acceptance criteria, and payment terms are agreed; there is no unpaid trial.
 
 ## Why it exists
