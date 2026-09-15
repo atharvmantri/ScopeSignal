@@ -113,7 +113,7 @@ function updateConversionLink(analysis) {
     '',
   ].join('\n');
   const handoffMessage = body.slice(0, 3900);
-  conversionLink.setAttribute('href', `https://www.atharv.me/paid-work.html?scope=${encodeURIComponent(handoffMessage)}#brief`);
+  conversionLink.setAttribute('href', `https://www.atharv.me/paid-work.html#brief?scope=${encodeURIComponent(handoffMessage)}`);
   conversionLabel.textContent = 'Request this paid slice';
   conversionLink.setAttribute('aria-label', 'Request this analyzed paid implementation slice');
 }
