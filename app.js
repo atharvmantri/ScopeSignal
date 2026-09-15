@@ -64,7 +64,7 @@ function analyzeBrief(text) {
   const summary = score >= 75 ? 'A useful first scope is visible.' : score >= 50 ? 'The direction is visible, but a few decisions still affect the estimate.' : 'Clarify the missing decisions before promising a date or price.';
   const firstDeliverable = deliverables[0] || 'the smallest reviewable part of the requested outcome';
   const firstAcceptance = acceptance[0] || 'the reviewer can verify the requested behavior in the agreed environment';
-  const firstSlice = `Start with ${firstDeliverable}. Done means: ${firstAcceptance}. Keep integrations, extra pages, and production access out of the first milestone until they are written down.`;
+  const firstSlice = `Start with ${firstDeliverable.replace(/[.!?]+$/, '')}. Done means: ${firstAcceptance.replace(/[.!?]+$/, '')}. Keep integrations, extra pages, and production access out of the first milestone until they are written down.`;
   return { deliverables, acceptance, missing, riskSignals, score, summary, firstSlice };
 }
 
