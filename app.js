@@ -171,3 +171,23 @@ clearButton.addEventListener('click', () => {
 });
 
 updateCount();
+
+function loadDemoFromQuery() {
+  const demo = new URLSearchParams(window.location.search).get('demo');
+  if (demo !== '1') return;
+
+  input.value = sampleBrief;
+  updateCount();
+  const analysis = analyzeBrief(input.value);
+  latestAnalysis = analysis;
+  emptyState.hidden = true;
+  results.hidden = false;
+  resultActions.hidden = false;
+  copyStatus.textContent = '';
+  outputTitle.textContent = 'Your scope, clarified.';
+  renderAnalysis(analysis);
+  updateConversionLink(analysis);
+  statusDot.classList.add('ready');
+}
+
+loadDemoFromQuery();

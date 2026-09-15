@@ -4,6 +4,8 @@ ScopeSignal turns a messy software brief into a decision-ready scope: likely del
 
 Live demo: https://scopesignal.vercel.app/
 
+Worked example: https://scopesignal.vercel.app/?demo=1
+
 Demo video: https://github.com/atharvmantri/ScopeSignal/releases/download/demo-2026-09-15/ScopeSignal-demo.mp4
 
 Shareable pre-quote card: https://gist.github.com/atharvmantri/5df3843622528e985c9f01db5603de02
@@ -31,6 +33,7 @@ Then open `http://localhost:4173`.
 ## Features
 
 - Paste a project brief or use the included example.
+- Open the worked-example link to see the analyzer's output immediately.
 - Extract likely deliverables and acceptance checks.
 - Flag missing deadline, owner, environment, access, content, and budget details.
 - Highlight vague language, urgency, multi-surface scope, and integration risk.
