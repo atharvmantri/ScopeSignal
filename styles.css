@@ -60,6 +60,7 @@ textarea::placeholder { color: #9aa7aa; }
 .result-card.accent { background: var(--navy); color: #fff; }
 .result-card.accent p, .result-card.accent li { color: #d9e6e6; }
 .result-card.warning { border-left: 4px solid var(--red); }
+.result-card.slice { border-left: 4px solid var(--gold); }
 .result-meta { align-items: center; display: flex; gap: 8px; justify-content: space-between; margin-bottom: 12px; }
 .result-meta h3 { margin: 0; }
 .tag { background: var(--mint); border-radius: 99px; color: var(--navy); font-size: .68rem; font-weight: 850; letter-spacing: .06em; padding: 4px 8px; text-transform: uppercase; }

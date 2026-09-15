@@ -10,6 +10,7 @@ const outputTitle = document.querySelector('#output-title');
 const statusDot = document.querySelector('#status-dot');
 const resultActions = document.querySelector('#result-actions');
 const copyButton = document.querySelector('#copy-button');
+const downloadButton = document.querySelector('#download-button');
 const clearButton = document.querySelector('#clear-button');
 const copyStatus = document.querySelector('#copy-status');
 const conversionLink = document.querySelector('#conversion-link');
@@ -61,7 +62,10 @@ function analyzeBrief(text) {
   if (sentences.length > 8 || text.length > 900) riskSignals.push('The brief is broad; choose one primary outcome for the first pass.');
   const score = Math.max(10, Math.min(98, 100 - missing.length * 10 - riskSignals.length * 7));
   const summary = score >= 75 ? 'A useful first scope is visible.' : score >= 50 ? 'The direction is visible, but a few decisions still affect the estimate.' : 'Clarify the missing decisions before promising a date or price.';
-  return { deliverables, acceptance, missing, riskSignals, score, summary };
+  const firstDeliverable = deliverables[0] || 'the smallest reviewable part of the requested outcome';
+  const firstAcceptance = acceptance[0] || 'the reviewer can verify the requested behavior in the agreed environment';
+  const firstSlice = `Start with ${firstDeliverable}. Done means: ${firstAcceptance}. Keep integrations, extra pages, and production access out of the first milestone until they are written down.`;
+  return { deliverables, acceptance, missing, riskSignals, score, summary, firstSlice };
 }
 
 function listMarkup(items, fallback) {
@@ -77,12 +81,13 @@ function renderAnalysis(analysis) {
     <article class="result-card"><div class="result-meta"><h3>Likely deliverables</h3><span class="tag">output</span></div>${listMarkup(analysis.deliverables, 'No concrete deliverable was detected. Name the first thing that should exist at handoff.')}</article>
     <article class="result-card"><div class="result-meta"><h3>Acceptance checks</h3><span class="tag">done means</span></div>${listMarkup(analysis.acceptance, 'No explicit acceptance check was detected. Write what a reviewer should be able to verify.')}</article>
     ${missingCard}${riskCard}
+    <article class="result-card slice"><div class="result-meta"><h3>Suggested first paid slice</h3><span class="tag">bound it</span></div><p>${escapeHTML(analysis.firstSlice)}</p></article>
     <article class="result-card"><div class="result-meta"><h3>Best next question</h3><span class="tag">next step</span></div><p>What is the smallest outcome we can accept as done, in which environment, by when, and for which payout?</p></article>`;
 }
 
 function reportMarkdown(analysis) {
   const section = (title, items, fallback) => `## ${title}\n${(items.length ? items : [fallback]).map((item) => `- ${item}`).join('\n')}`;
-  return `# ScopeSignal note\n\n${analysis.summary} (${analysis.score}% clear)\n\n${section('Likely deliverables', analysis.deliverables, 'No concrete deliverable detected.')}\n\n${section('Acceptance checks', analysis.acceptance, 'No explicit acceptance check detected.')}\n\n${section('Decisions still missing', analysis.missing, 'None detected by the current checks.')}\n\n${section('Risk signals', analysis.riskSignals, 'None detected by the current checks.')}\n\n## Best next question\nWhat is the smallest outcome we can accept as done, in which environment, by when, and for which payout?\n`;
+  return `# ScopeSignal note\n\n${analysis.summary} (${analysis.score}% clear)\n\n${section('Likely deliverables', analysis.deliverables, 'No concrete deliverable detected.')}\n\n${section('Acceptance checks', analysis.acceptance, 'No explicit acceptance check detected.')}\n\n${section('Decisions still missing', analysis.missing, 'None detected by the current checks.')}\n\n${section('Risk signals', analysis.riskSignals, 'None detected by the current checks.')}\n\n## Suggested first paid slice\n${analysis.firstSlice}\n\n## Best next question\nWhat is the smallest outcome we can accept as done, in which environment, by when, and for which payout?\n`;
 }
 
 function resetConversionLink() {
@@ -161,6 +166,18 @@ copyButton.addEventListener('click', async () => {
   } catch {
     copyStatus.textContent = 'Copy unavailable here; select the report manually.';
   }
+});
+
+downloadButton.addEventListener('click', () => {
+  if (!latestAnalysis) return;
+  const blob = new Blob([reportMarkdown(latestAnalysis)], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'scopesignal-note.md';
+  link.click();
+  URL.revokeObjectURL(url);
+  copyStatus.textContent = 'Downloaded.';
 });
 
 clearButton.addEventListener('click', () => {
