@@ -6,4 +6,5 @@ Live app: https://scopesignal.vercel.app/
 Worked example: https://scopesignal.vercel.app/?demo=1
 Focused Conversion rescue entry point: https://www.atharv.me/conversion-rescue.html
 Direct paid-work brief: https://www.atharv.me/paid-work.html
+Direct prefilled email fallback: mailto:work@atharv.me?subject=Conversion%20rescue%20brief
 Source: https://github.com/atharvmantri/ScopeSignal
